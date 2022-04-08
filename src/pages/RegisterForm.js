@@ -16,6 +16,8 @@ import { Login, Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { Link } from "react-router-dom";
+
 
 const validationSchema = yup.object({
   username: yup.string().required("Bạn chưa nhập tài khoản!"),
@@ -192,6 +194,7 @@ function RegisterForm() {
                 Đăng kí
               </Button>
             </FormControl>
+            <Link to='/'>Đăng nhập</Link>
           </form>
         </Paper>
       </Grid>
