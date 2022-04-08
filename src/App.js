@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import LoginForm from "./pages/LoginForm";
+import RegisterForm from "./pages/RegisterForm";
+import Home from "./pages/Home";
+import AuthContextProvider from "./context/AuthContext";
+import ProductContextProvider from "./context/ProductContext";
+import AddProduct from "./pages/AddProduct";
+import Products from "./pages/Products";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContextProvider>
+      <ProductContextProvider>
+        <Routes>
+          <Route path="/" element={<LoginForm />} />
+          <Route path="register" element={<RegisterForm />} />
+          <Route path="home" element={<Home />}>
+            <Route path="add" element={<AddProduct/>}/>
+            <Route path="products" element={<Products/>}/>
+          </Route>
+        </Routes>
+      </ProductContextProvider>
+    </AuthContextProvider>
   );
 }
 
