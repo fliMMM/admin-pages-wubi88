@@ -1,10 +1,11 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginForm from "./pages/LoginForm";
 import RegisterForm from "./pages/RegisterForm";
-import Home from "./pages/Home";
+import Home from './pages/Home/Home'
 import AuthContextProvider from "./context/AuthContext";
 import ProductContextProvider from "./context/ProductContext";
-import AddProduct from "./pages/AddProduct";
-import Products from "./pages/Products";
+import AddProduct from './pages/addProduct/AddProduct';
+import Products from './pages/productList/Products';
 import { Route, Routes } from "react-router-dom";
 
 function App() {

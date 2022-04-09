@@ -1,0 +1,19 @@
+.container{
+  display: flex;
+}
+
+.sideBar{
+  display: flex;
+  flex-direction: column;
+  background-color: #18202E;
+  min-height: 100vh;
+  padding-top: 50px;
+  min-width: 250px
+}
+
+.sideBar a{
+  text-decoration: none;
+  color: #819BAE;
+  margin-bottom: 10px;
+  min-width: 100%;
+}
