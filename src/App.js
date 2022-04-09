@@ -6,6 +6,7 @@ import AuthContextProvider from "./context/AuthContext";
 import ProductContextProvider from "./context/ProductContext";
 import AddProduct from './pages/addProduct/AddProduct';
 import Products from './pages/productList/Products';
+import Info from './pages/productInfo/Info';
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="home" element={<Home />}>
             <Route path="add" element={<AddProduct/>}/>
             <Route path="products" element={<Products/>}/>
+            <Route path='products/:id' element={<Info/>}/>
           </Route>
         </Routes>
       </ProductContextProvider>

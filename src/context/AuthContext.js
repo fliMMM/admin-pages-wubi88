@@ -50,7 +50,7 @@ const AuthContextProvider = ({children}) =>{
 
   
   
-  const value = {login, authState}
+  const value = {login, authState, loadUser}
   return(
     <AuthContext.Provider value={value}>
       {children}

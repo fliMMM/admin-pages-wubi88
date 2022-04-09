@@ -7,7 +7,8 @@ import styles from './style.module.css'
 
 const navBar = [
   {to:'add', title: "Thêm sản phẩm"},
-  {to:'products', title: "Xem toàn bộ sản phẩm"}
+  {to:'products', title: "Xem toàn bộ sản phẩm"},
+  {to:'/', title: "Đăng xuất"}
 ]
 function Home(){
 
@@ -18,14 +19,17 @@ function Home(){
     if(isAuthenticated ===false){
     navigate('/');
   }
-  })
+  },[isAuthenticated])
 
+  const Logout = async ()=>{
+    localStorage.removeItem('accessToken');
+  }
   return(
     <div className={styles.container}>
       <div className={styles.sideBar}>
         {navBar.map((item)=>{
         return(
-          <Link key={item.to} to={item.to}>{item.title}</Link>
+          <Link onClick={item.to === '/' ? Logout : ""} key={item.to} to={item.to}>{item.title}</Link>
         )
       })}
       </div>

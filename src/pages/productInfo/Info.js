@@ -6,6 +6,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+import app from "../../firebase";
 import {
   Input,
   FormControl,
@@ -18,7 +19,8 @@ import {
 import { useFormik } from "formik";
 import { ProductContext } from "../../context/ProductContext";
 import { useContext, useState } from "react";
-import app from "../../firebase";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const formGroup = [
   { label: "Tên sản phẩm", name: "name" },
@@ -28,11 +30,21 @@ const formGroup = [
   { label: "Giá", name: "price" },
   { label: "Sô lượng", name: "inStock" },
 ];
-function AddProduct() {
-  const { Add } = useContext(ProductContext);
+ 
+function Info() {
+  const navigate = useNavigate();
+  const { getProductById, product1,updateProduct } = useContext(ProductContext);
+  useEffect(() => {
+    getProductById(id);
+  }, []);
+  const [loading, setLoading] = useState(false);
+  const location = useLocation();
+  const id = location.pathname.split("/")[3];
+  const [product, setProduct] = useState(product1);
+  
   const [file, setFile] = useState();
 
-  const handleInfo = (values) => {
+  const handleInfo = (id, values) => {
     const filename = new Date().getTime() + file.name;
 
     const storage = getStorage();
@@ -89,7 +101,7 @@ function AddProduct() {
       async () => {
         // Upload completed successfully, now we can get the download URL
         const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
-        const res = await Add({ ...values, image: downloadURL });
+        const res = await updateProduct(id,{ ...values, image: downloadURL });
         if(res.success === true){
           alert(res.message)
         }
@@ -98,17 +110,9 @@ function AddProduct() {
   };
 
   const formik = useFormik({
-    initialValues: {
-      name: "",
-      author: "",
-      description: "",
-      categories: "",
-      price: "",
-      inStock: "",
-    },
+    initialValues: product,
     onSubmit: async (values) => {
-      values = {...values,categories: values.categories.split(',') }
-      handleInfo(values);
+      handleInfo(id, values)
     },
   });
   return (
@@ -117,7 +121,7 @@ function AddProduct() {
         <Grid item>
           <Paper elevation={4}>
             <Typography variant="h5" height={"30px"} gutterBottom>
-              Thêm sản phẩm
+              Sửa sản phẩm
             </Typography>
             <form onSubmit={formik.handleSubmit}>
               {formGroup.map((form) => {
@@ -156,7 +160,7 @@ function AddProduct() {
                   }}
                   type="submit"
                 >
-                  Thêm
+                  Sửa
                 </Button>
               </FormControl>
             </form>
@@ -166,4 +170,4 @@ function AddProduct() {
     </div>
   );
 }
-export default AddProduct;
+export default Info;
