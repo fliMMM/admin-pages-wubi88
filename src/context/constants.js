@@ -1,1 +1,1 @@
-export const apiUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:9999/api' : "https://quiet-spire-68574.herokuapp.com";
+export const apiUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:9999/api' : "https://wibu88-app.herokuapp.com";
