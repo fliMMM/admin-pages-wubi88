@@ -19,6 +19,8 @@ import { useFormik } from "formik";
 import { ProductContext } from "../../context/ProductContext";
 import { useContext, useState } from "react";
 import app from "../../firebase";
+import { CircularProgress} from "@mui/material";
+import { Login } from "@mui/icons-material";
 
 const formGroup = [
   { label: "Tên sản phẩm", name: "name" },
@@ -31,6 +33,7 @@ const formGroup = [
 function AddProduct() {
   const { Add } = useContext(ProductContext);
   const [file, setFile] = useState();
+  const [loading, setLoading] = useState(false);
 
   const handleInfo = (values) => {
     const filename = new Date().getTime() + file.name;
@@ -92,6 +95,7 @@ function AddProduct() {
         const res = await Add({ ...values, image: downloadURL });
         if(res.success === true){
           alert(res.message)
+          setLoading(false)
         }
       }
     );
@@ -107,8 +111,10 @@ function AddProduct() {
       inStock: "",
     },
     onSubmit: async (values) => {
-      values = {...values,categories: values.categories.split(',') }
+      setLoading(true)
+      values = {...values,categories: values.categories.split('-') }
       handleInfo(values);
+      
     },
   });
   return (
@@ -155,6 +161,13 @@ function AddProduct() {
                     margin: "0 auto",
                   }}
                   type="submit"
+                  startIcon={
+                  loading ? (
+                    <CircularProgress size={16} style={{ color: "#fff" }} />
+                  ) : (
+                    <Login />
+                  )
+                }
                 >
                   Thêm
                 </Button>

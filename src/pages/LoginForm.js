@@ -46,7 +46,9 @@ function LoginForm() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      setLoading(true)
       await login(values);
+      setLoading(false)
     },
   });
 

@@ -1,1 +1,1 @@
-export const apiUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:9999/api' : "https://fancy-horse-c34700.netlify.app/api";
+export const apiUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:9999/api' : "https://backendwubi88.herokuapp.com/api";
