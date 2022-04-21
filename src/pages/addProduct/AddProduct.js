@@ -29,6 +29,12 @@ const formGroup = [
   { label: "Thể loại", name: "categories" },
   { label: "Giá", name: "price" },
   { label: "Sô lượng", name: "inStock" },
+  { label: "Đối tượng", name: "target" },
+  { label: "Số trang", name: "soTrang" },
+  { label: "Khổ giấy", name: "khuonKho" },
+  { label: "Trọng lượng", name: "weight" },
+  { label: "Bộ sách", name: "combo" },
+  { label: "Ngày phát hành", name: "ngayPhatHanh" }
 ];
 function AddProduct() {
   const { Add } = useContext(ProductContext);
@@ -109,11 +115,18 @@ function AddProduct() {
       categories: "",
       price: "",
       inStock: "",
+      target: '',
+      khuonKho: '',
+      soTrang: '',
+      weight:'',
+      combo: '',
+      ngayPhatHanh: ''
     },
     onSubmit: async (values) => {
       setLoading(true)
       values = {...values,categories: values.categories.split('-') }
       handleInfo(values);
+      setLoading(false)
       
     },
   });

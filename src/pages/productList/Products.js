@@ -67,7 +67,7 @@ function Products(){
         <TableHead>
           <TableRow>
             <StyledTableCell>Tên sản phẩm</StyledTableCell>
-            <StyledTableCell align="left">Số lượng</StyledTableCell>
+            <StyledTableCell align="left">Số lượng: {products.length}</StyledTableCell>
             <StyledTableCell align="left"></StyledTableCell>
           </TableRow>
         </TableHead>
